@@ -10,12 +10,16 @@ const ItemAsset = (props) => {
   return (
     <AssetItem>
       <Grid>
-        <GridItem sx={{ alignContent: "center" }} colStart={1} colEnd={4}>
+        <GridItem
+          sx={{ alignContent: "center", color: "#ffffff" }}
+          colStart={1}
+          colEnd={4}
+        >
           <Avatar size={`sm`} sx={{ marginLeft: `0px` }} name={name} />
           <Text
             as="kbd"
-            fontSize="15px"
-            sx={{ margin: `2px 15px`, fontWeight: `550` }}
+            fontSize="13px"
+            sx={{ margin: `2px 15px`, fontWeight: `530`, color: "#ffffff" }}
           >
             {balance} {symbol}
           </Text>
@@ -30,11 +34,6 @@ const AssetItem = styled.div`
   width: 100%;
   border-bottom: 1px solid #b4b8bc;
   padding: 10px 0px;
-  transition: 0.5s;
-  &:hover {
-    background-color: #e6e4e4;
-    cursor: pointer;
-  }
 `;
 
 // const ItemIcon = styled.div`

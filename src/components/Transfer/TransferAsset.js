@@ -1,13 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Button, Input, InputGroup, InputLeftAddon } from "@chakra-ui/react";
-import { ArrowForwardIcon, ArrowBackIcon } from "@chakra-ui/icons";
-import { Link } from "@chakra-ui/react";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { SLEEPY_ABI, SLEEPY_ADDRESS } from "../../abis/SLEEPY_TOKEN";
 import styled from "styled-components";
 // import logo from '../logo.png';
 import Web3 from "web3";
 import { useEffect, useState } from "react";
+import { Kbd } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 
 const TransferAsset = () => {
@@ -49,15 +48,27 @@ const TransferAsset = () => {
   return (
     <Background>
       <MainCard>
-        <Text>1 MATIC = 1 ZEROGIC</Text>
+        <Container>
+          <span>
+            <Kbd>1 matic</Kbd> <Kbd>=</Kbd> <Kbd>1 zerogic</Kbd>
+          </span>
+        </Container>
         <Container>
           <InputGroup sx={{ maxWidth: "80%", padding: "20px 0px" }}>
             <InputLeftAddon children="0x...."></InputLeftAddon>
-            <Input placeholder="Paste Swap Address Here" className="send" />
+            <Input
+              sx={{ color: "#ffffff" }}
+              placeholder="Paste Swap Address"
+              className="send"
+            />
           </InputGroup>
           <InputGroup sx={{ maxWidth: "80%", padding: "20px 0px" }}>
-            <InputLeftAddon children="$(amount)"></InputLeftAddon>
-            <Input placeholder="Amount" className="send" />
+            <InputLeftAddon children="$(MATIC)"></InputLeftAddon>
+            <Input
+              sx={{ color: "#ffffff" }}
+              placeholder="Amount"
+              className="send"
+            />
           </InputGroup>
           <Button
             sx={{ color: "#ffffff" }}

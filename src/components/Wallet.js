@@ -8,8 +8,6 @@ import {
   Tab,
   Avatar,
 } from "@chakra-ui/react";
-import { Link } from "@chakra-ui/react";
-
 import { useNavigate } from "react-router-dom";
 import { DownloadIcon, ExternalLinkIcon } from "@chakra-ui/icons";
 import {
@@ -23,7 +21,6 @@ import "./Wallet.css";
 import Web3 from "web3";
 import { useEffect, useState } from "react";
 import ItemAsset from "./AssetItem/ItemAsset";
-import axios from "axios";
 const Wallet = () => {
   const web3 = new Web3(Web3.givenProvider);
   const [account, setAccount] = useState();
@@ -36,7 +33,6 @@ const Wallet = () => {
   useEffect(() => {
     (async () => {
       let acc = await web3.eth.getAccounts();
-
       if (acc.length === 0) acc = await web3.eth.requestAccounts();
       setAccount(acc[0]);
       const bal = await web3.eth.getBalance(acc[0]);
@@ -89,12 +85,12 @@ const Wallet = () => {
 
         <HomeBar>
           <BalanceZone>
-            <Text as={`sub`} sx={{ color: ``, fontWeight: `600` }}>
+            <Text as={`sub`} sx={{ color: `#ffff`, fontWeight: `700` }}>
               Swap Addres:
             </Text>
           </BalanceZone>
           <BalanceZonee>
-            <Text as={`sub`} sx={{ color: ``, fontWeight: `700` }}>
+            <Text sx={{ color: `#ffff`, fontWeight: `700` }}>
               0x0c9c219316386e5a342491cca7fac50bcd87ac09
             </Text>
           </BalanceZonee>
@@ -103,25 +99,25 @@ const Wallet = () => {
               <IconButton>
                 <DownloadIcon />
               </IconButton>
-              <Text as={`sub`} sx={{ color: ``, fontWeight: `700` }}>
-                <Link href="/transfer/:ether">Swap</Link>
+              <Text as={`sub`} sx={{ color: `#fffff`, fontWeight: `700` }}>
+                Swap
               </Text>
             </Button>
             <Button>
               <IconButton>
-                <ExternalLinkIcon href="/transfer/:ether" />
+                <ExternalLinkIcon />
               </IconButton>
-              <Text as={`sub`} sx={{ color: `#a20000`, fontWeight: `600` }}>
+              <Text as={`sub`} sx={{ color: `#fffff`, fontWeight: `600` }}>
                 Send
               </Text>
             </Button>
           </ActionZone>
         </HomeBar>
         <AssetBar>
-          <Tabs>
-            <TabList mb="1em">
-              <Tab>Assets</Tab>
-              <Tab>Stable</Tab>
+          <Tabs sx={{ color: `#fffff`, fontWeight: `700` }}>
+            <TabList sx={{ color: `#fffff`, fontWeight: `700` }} mb="1em">
+              <Tab sx={{ color: `#fffff`, fontWeight: `700` }}>Assets</Tab>
+              <Tab sx={{ color: `#fffff`, fontWeight: `700` }}>Stable</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>
@@ -168,7 +164,7 @@ const Background = styled.div`
 
 const MainCard = styled.div`
   width: 100%;
-  background-color: #ffffff;
+  background-color: #0000;
   margin-top: 5%;
   border-radius: 4px;
   align-items: center;
@@ -210,6 +206,16 @@ const BalanceZonee = styled.div`
   text-align: center;
   font-size: 80%;
   font-weight: 550;
+  & ::-moz-selection {
+    /* Css Untuk Browser Firefox */
+    background-color: #c6538a;
+    color: #ffffff;
+  }
+
+  ::selection {
+    background-color: #c6538a;
+    color: #ffffff;
+  }
 `;
 const BalanceZone = styled.div`
   border-radius: 5px;
