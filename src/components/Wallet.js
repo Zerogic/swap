@@ -8,6 +8,7 @@ import {
   Tab,
   Avatar,
 } from "@chakra-ui/react";
+import { Link } from "@chakra-ui/react";
 
 import { useNavigate } from "react-router-dom";
 import { DownloadIcon, ExternalLinkIcon } from "@chakra-ui/icons";
@@ -103,12 +104,12 @@ const Wallet = () => {
                 <DownloadIcon />
               </IconButton>
               <Text as={`sub`} sx={{ color: ``, fontWeight: `700` }}>
-                Buy
+                <Link href="/transfer/:ether">Swap</Link>
               </Text>
             </Button>
             <Button>
               <IconButton>
-                <ExternalLinkIcon />
+                <ExternalLinkIcon href="/transfer/:ether" />
               </IconButton>
               <Text as={`sub`} sx={{ color: `#a20000`, fontWeight: `600` }}>
                 Send
