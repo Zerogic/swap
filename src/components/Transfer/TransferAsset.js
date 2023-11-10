@@ -48,14 +48,6 @@ const TransferAsset = () => {
 
   return (
     <Background>
-      <Button
-        sx={{ color: "#ffffff" }}
-        leftIcon={<ArrowBackIcon />}
-        colorScheme="blue"
-        variant={`solid`}
-      >
-        <Link href="/">Back</Link>
-      </Button>
       <MainCard>
         <Text>1 MATIC = 1 ZEROGIC</Text>
         <Container>
