@@ -8,12 +8,14 @@ import {
   Tab,
   Avatar,
 } from "@chakra-ui/react";
+import { Kbd } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { DownloadIcon, ExternalLinkIcon } from "@chakra-ui/icons";
 import {
   SLEEPY_ABI,
   SLEEPY_ADDRESSDUA,
   SLEEPY_ADDRESSTIGA,
+  SLEEPY_ADDRESSEMPAT,
 } from "../abis/SLEEPY_TOKEN";
 import styled from "styled-components";
 // import logo from '../logo.png';
@@ -28,6 +30,7 @@ const Wallet = () => {
 
   const [balanceSleep, setBalanceSleep] = useState();
   const [balanceSleepp, setBalanceSleepp] = useState();
+  const [balanceSleeppp, setBalanceSleeppp] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -58,6 +61,14 @@ const Wallet = () => {
       setBalanceSleepp(web3.utils.fromWei(balSleepp, "ether"));
     })();
   }, [account, web3]);
+  useEffect(() => {
+    (async () => {
+      const token = new web3.eth.Contract(SLEEPY_ABI, SLEEPY_ADDRESSEMPAT);
+      // console.log(token);
+      const balSleeppp = await token.methods.balanceOf(account).call();
+      setBalanceSleeppp(web3.utils.fromWei(balSleeppp, "ether"));
+    })();
+  }, [account, web3]);
 
   // const SwitchBalance = async () => {
   //   isETH ? setIsETH(false) : setIsETH(true);
@@ -78,41 +89,11 @@ const Wallet = () => {
       <MainCard>
         <MenuBar>
           <AddressZone>
-            <Text>Your Wallet Addres</Text>
-            <Text>{account}</Text>
+            <Kbd>Your Wallet</Kbd>
+            <Kbd>{account}</Kbd>
           </AddressZone>
         </MenuBar>
 
-        <HomeBar>
-          <BalanceZone>
-            <Text as={`sub`} sx={{ color: `#ffff`, fontWeight: `700` }}>
-              Swap Addres:
-            </Text>
-          </BalanceZone>
-          <BalanceZonee>
-            <Text sx={{ color: `#ffff`, fontWeight: `700` }}>
-              0x0c9c219316386e5a342491cca7fac50bcd87ac09
-            </Text>
-          </BalanceZonee>
-          <ActionZone>
-            <Button>
-              <IconButton>
-                <DownloadIcon />
-              </IconButton>
-              <Text as={`sub`} sx={{ color: `#fffff`, fontWeight: `700` }}>
-                Swap
-              </Text>
-            </Button>
-            <Button>
-              <IconButton>
-                <ExternalLinkIcon />
-              </IconButton>
-              <Text as={`sub`} sx={{ color: `#fffff`, fontWeight: `600` }}>
-                Send
-              </Text>
-            </Button>
-          </ActionZone>
-        </HomeBar>
         <AssetBar>
           <Tabs sx={{ color: `#fffff`, fontWeight: `700` }}>
             <TabList sx={{ color: `#fffff`, fontWeight: `700` }} mb="1em">
@@ -144,6 +125,15 @@ const Wallet = () => {
                     balance={balanceSleepp}
                     name={`Rupiah-C`}
                     symbol={`IDRC`}
+                  />
+                </div>
+                <div
+                  onClick={() => navigate(`/transfer/${SLEEPY_ADDRESSEMPAT}`)}
+                >
+                  <ItemAsset
+                    balance={balanceSleeppp}
+                    name={`Usdt`}
+                    symbol={`USDT`}
                   />
                 </div>
               </TabPanel>
@@ -182,9 +172,10 @@ const AddressZone = styled.div`
   width: 100%;
   border-radius: 10px;
   text-align: center;
-  font-size: 70%;
+  font-size: 14px;
   cursor: pointer;
-  color: red;
+  margin: 0px 0 0 0;
+  color: black;
   align-items: center;
 `;
 
@@ -199,6 +190,7 @@ const HomeBar = styled.div`
 
 const AssetBar = styled.div`
   padding: 0;
+  margin: 100px 0 0 0;
 `;
 
 const BalanceZonee = styled.div`
