@@ -6,6 +6,12 @@ import {
   SLEEPY_ADDRESS,
   SLEEPY_ADDRESSEMPAT,
 } from "../../abis/SLEEPY_TOKEN";
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+} from "@chakra-ui/react";
 import styled from "styled-components";
 
 // import logo from '../logo.png';
@@ -56,19 +62,19 @@ const TransferAsset = () => {
     <Background>
       <MainCard>
         <Container>
+          <InputGroup sx={{ maxWidth: "80%", padding: "20px 0px" }}>
+            <Input
+              sx={{ borderColor: "#0000" }}
+              placeholder=""
+              className="send"
+            />
+          </InputGroup>
           <span>
             <Kbd>1 Usdt</Kbd> <Kbd>=</Kbd> <Kbd>1 zerogic</Kbd>
           </span>
           <InputGroup sx={{ maxWidth: "80%", padding: "20px 0px" }}>
-            <InputLeftAddon children="0x...."></InputLeftAddon>
-            <Input
-              sx={{ display: none, color: "#ffffff" }}
-              placeholder="Paste Swap Address"
-              className="send"
-            />
-          </InputGroup>
-          <InputGroup sx={{ maxWidth: "80%", padding: "20px 0px" }}>
             <InputLeftAddon children="$(USDT)"></InputLeftAddon>
+
             <Input
               sx={{ color: "#ffffff" }}
               placeholder="Amount"
